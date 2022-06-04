@@ -6,11 +6,7 @@ type Props = {
 };
 
 const Table = ({ users }: Props) => {
-  const [checked, setChecked] = useState(false);
-  // const [selectedUsers, setSelectedUsers] = useState([]);
-  // const [filteredUsers, setFilteredUsers] = useState([]);
-
-  const newUsers = users.map((u) => ({ ...u, isSelected: false }));
+  const [checkedUsers, setCheckedUsers] = useState<number[]>([]);
 
   return (
     <table className="table">
@@ -18,9 +14,15 @@ const Table = ({ users }: Props) => {
         <tr>
           <th>
             <input
-              checked={checked}
               type="checkbox"
-              onChange={() => setChecked(!checked)}
+              checked={checkedUsers.length === users.length}
+              onChange={(e) =>
+                setCheckedUsers((prevUsers) =>
+                  prevUsers.length === users.length
+                    ? []
+                    : users.map((user) => user.id)
+                )
+              }
             />
           </th>
           <th>Name</th>
@@ -29,20 +31,31 @@ const Table = ({ users }: Props) => {
         </tr>
       </thead>
       <tbody>
-        {newUsers.map((user, i) => (
+        {users.map((user, i) => (
           <tr key={i}>
             <td>
               <input
                 type="checkbox"
-                defaultChecked={checked}
-                onChange={() => {
-                  user.isSelected = !user.isSelected;
-                }}
+                checked={checkedUsers.includes(user.id)}
+                onChange={(e) =>
+                  e.target.checked
+                    ? setCheckedUsers((users) => [...users, user.id])
+                    : setCheckedUsers((users) =>
+                        users.filter((id) => id !== user.id)
+                      )
+                }
               />
             </td>
+            <td>{user.id}</td>
             <td>{user.name}</td>
             <td>{user.email}</td>
-            <td>{user.isActive ? "Active" : "Blocked"}</td>
+            <td
+              className={`${
+                user.isActive ? "bg-success" : "bg-danger"
+              } text-white`}
+            >
+              {user.isActive ? "Active" : "Blocked"}
+            </td>
           </tr>
         ))}
       </tbody>
