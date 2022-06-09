@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 
 export const requestInstance = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://user-management-itransition.herokuapp.com/",
 });
 
 requestInstance.interceptors.request.use((config: any) => {
