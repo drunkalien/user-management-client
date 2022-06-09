@@ -1,38 +1,15 @@
 import Table from "./_table";
-import { User } from "types";
-
-const users: User[] = [
-  {
-    name: "John Doe",
-    email: "johndoe@gmail.com",
-    isActive: true,
-  },
-  {
-    name: "John Doe",
-    email: "johndoe@gmail.com",
-    isActive: true,
-  },
-  {
-    name: "John Doe",
-    email: "johndoe@gmail.com",
-    isActive: true,
-  },
-  {
-    name: "John Doe",
-    email: "johndoe@gmail.com",
-    isActive: true,
-  },
-  {
-    name: "John Doe",
-    email: "johndoe@gmail.com",
-    isActive: true,
-  },
-];
+import Controls from "./_controls";
+import { Link } from "react-router-dom";
 
 const Users = () => {
   return (
     <div className="p-5">
-      <Table users={users} />
+      <Controls />
+      <Table />
+      <Link to="/">
+        <button className="btn btn-primary">&#8592; Go back</button>
+      </Link>
     </div>
   );
 };

@@ -1,2 +1,2 @@
 // Pages
-export { Signup, Login, Users } from "./pages";
+export { Signup, Login, Users, Home } from "./pages";

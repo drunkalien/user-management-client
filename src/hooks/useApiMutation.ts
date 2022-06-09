@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { useMutation, UseMutationOptions } from "react-query";
-import { request } from "services";
+import { request } from "../services";
 
 type Args<Response, Error, Variables> = {
   url: string;

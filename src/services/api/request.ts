@@ -12,12 +12,11 @@ requestInstance.interceptors.request.use((config: any) => {
   return config;
 });
 
-requestInstance.interceptors.request.use(
+requestInstance.interceptors.response.use(
   (config: any) => config,
   (error: AxiosError) => {
     if (error.response?.status === 401) {
-      // TODO should redirect to home page
-      console.log("Not authorized");
+      window.location.replace("/login");
     }
   }
 );

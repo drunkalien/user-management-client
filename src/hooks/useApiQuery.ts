@@ -1,6 +1,6 @@
 import { AxiosInstance, AxiosResponse } from "axios";
 import { useQuery, UseQueryOptions } from "react-query";
-import { request } from "services";
+import { request } from "../services";
 
 type Args<Data, Params, Error> = {
   url: string;
